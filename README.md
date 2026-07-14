@@ -1,4 +1,4 @@
-# 📚 StudyMate — AI-Powered Study Notes App
+# 📚 StudyMate - AI-Powered Study Notes App
 
 StudyMate is a full-stack study notes app: capture notes by subject, get an AI-generated
 3-bullet summary + quiz question for any note, and manage everything through a custom MCP
