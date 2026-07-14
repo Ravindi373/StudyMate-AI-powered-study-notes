@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StudyMate — AI-Powered Study Notes</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="logo">📚 StudyMate</div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Study smarter, not harder.</h1>
+      <p class="pitch" id="typedPitch"></p>
+      <a href="../client/index.html" class="btn-primary" id="openAppBtn">Open App →</a>
+    </div>
+  </header>
+
+  <section class="features">
+    <div class="features-inner">
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <h3>Capture Notes</h3>
+        <p>Jot down lecture notes by subject, tag them, and find them instantly with search.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✨</div>
+        <h3>AI Summaries</h3>
+        <p>One click turns a wall of text into a crisp 3-bullet summary plus a quiz question.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <h3>Talk to Claude</h3>
+        <p>Manage your notes right from Claude Desktop with our custom MCP server integration.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="faq-inner">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">Is StudyMate free to use? <span>+</span></button>
+        <div class="faq-answer"><p>Yes — StudyMate is a free, open-source project built for learning full-stack development.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Which AI model powers the summaries? <span>+</span></button>
+        <div class="faq-answer"><p>StudyMate uses the Claude API to generate bullet-point summaries and quiz questions from your notes.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Can I use StudyMate from Claude Desktop? <span>+</span></button>
+        <div class="faq-answer"><p>Yes! StudyMate ships with an MCP server so you can list and create notes directly by chatting with Claude.</p></div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Built with ❤️ for Sessions 1–9 · StudyMate © 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
