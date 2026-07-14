@@ -157,10 +157,6 @@ Then in Claude Desktop, try:
 
 ## Screenshots
 
-_Add screenshots here before submitting:_
-
-## Screenshots
-
 ### App UI
 ![App UI](./docs/app-ui.png)
 
@@ -182,7 +178,8 @@ _Add screenshots here before submitting:_
 
 - ✅ Edit/update note end-to-end (`PUT /api/notes/:id`, edit button + form pre-fill in React)
 - ✅ Dark mode toggle on the landing page (persisted via `localStorage`)
-- ⬜ AI quiz mode (3 MCQs) — not implemented in this pass
+- ✅ AI quiz mode (3 MCQs)
+- ✅ AI Summarize with 3 points
 - ⬜ Deployment — not implemented in this pass
 
 ## Notes for the reviewer
