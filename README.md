@@ -139,6 +139,7 @@ This opens MCP Inspector in your browser at `http://localhost:6274`, pre-configu
 3. Select a tool, fill in any required inputs, and click **Run Tool**
 
 Screenshots of both tools succeeding are in the Screenshots section below.
+
 ---
 
 ## Screenshots
