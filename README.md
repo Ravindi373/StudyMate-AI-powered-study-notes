@@ -174,7 +174,7 @@ _Add screenshots here before submitting:_
 ![MCP list_notes](./docs/mcp-success.png)
 
 ### MCP Inspector — create_note tool call
-![MCP create_note](./docs/mcp-success_2.png)
+![MCP create_note](./docs/mcp-success-2.png)
 
 ---
 
