@@ -1,8 +1,8 @@
 # 📚 StudyMate — Your AI-Powered Study Notes App
 
 StudyMate is a full-stack study notes app: capture notes by subject, get an AI-generated
-3-bullet summary + quiz question for any note, and manage everything straight from Claude
-Desktop via a custom MCP server.
+3-bullet summary + quiz question for any note, and manage everything through a custom MCP
+server tested with MCP Inspector.
 
 ## Tech stack
 
