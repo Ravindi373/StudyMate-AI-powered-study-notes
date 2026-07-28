@@ -4,6 +4,8 @@ StudyMate is a full-stack study notes app: capture notes by subject, get an AI-g
 3-bullet summary + quiz question for any note, and manage everything through a custom MCP
 server tested with MCP Inspector.
 
+🔗 **Live demo:** https://study-mate-ai-powered-study-notes.vercel.app
+
 ## Tech stack
 
 | Layer | Tech |
@@ -12,7 +14,7 @@ server tested with MCP Inspector.
 | Frontend | React 18 + Vite |
 | Backend | Node.js, Express |
 | Database | MongoDB + Mongoose |
-| AI | Anthropic Claude API (`@anthropic-ai/sdk`) |
+| AI | Google Gemini API (`gemini-3.1-flash-lite`, via REST)|
 | Claude integration | Model Context Protocol (MCP) server over stdio |
 
 ## Repo structure
@@ -81,7 +83,7 @@ empty states, and a "✨ Summarize" button per note with its own loading state.
 
 ```bash
 cd server
-cp .env.example .env   # then fill in MONGODB_URI and ANTHROPIC_API_KEY
+cp .env.example .env   # then fill in MONGODB_URI and GEMINI_API_KEY
 npm install
 npm start
 ```
@@ -94,7 +96,7 @@ Runs at `http://localhost:5000`.
 |---|---|
 | `PORT` | Port Express listens on (default `5000`) |
 | `MONGODB_URI` | Local (`mongodb://127.0.0.1:27017/studymate`) or Atlas connection string. **URL-encode** any special characters in your Atlas password, and allow `0.0.0.0/0` in Atlas's IP access list for local dev. |
-| `ANTHROPIC_API_KEY` | Your key from [console.anthropic.com](https://console.anthropic.com/), used by the `/summarize` endpoint |
+| `GEMINI_API_KEY` | key from [aistudio.google.com/apikey](https://aistudio.google.com/apikey), used by the `/summarize` and `/quiz` endpoints |
 
 ### Routes
 
@@ -104,7 +106,8 @@ Runs at `http://localhost:5000`.
 | POST | `/api/notes` | Create a note (`title`, `subject`, `content`) — `400` if title/content empty |
 | PUT | `/api/notes/:id` | Update a note (bonus) |
 | DELETE | `/api/notes/:id` | Delete a note |
-| POST | `/api/notes/:id/summarize` | Send note content to Claude, get back 3 bullets + 1 quiz question, save on the note |
+| POST | `/api/notes/:id/summarize` | Send note content to Gemini, get back 3 bullets + 1 quiz question, save on the note |
+| POST | `/api/notes/:id/quiz` | Generate 3 multiple-choice questions from the note via Gemini, save on the note (bonus) |
 
 CORS is enabled so the Vite dev server can call the API without issues.
 
@@ -167,7 +170,7 @@ Screenshots of both tools succeeding are in the Screenshots section below.
 - ✅ Dark mode toggle on the landing page (persisted via `localStorage`)
 - ✅ AI quiz mode (3 MCQs)
 - ✅ AI Summarize with 3 points
-- ⬜ Deployment — not implemented in this pass
+- ✅ Deployed live — frontend on Vercel, backend on Railway, database on MongoDB Atlas: https://study-mate-ai-powered-study-notes.vercel.app
 
 ## Notes for the reviewer
 
@@ -181,3 +184,6 @@ Screenshots of both tools succeeding are in the Screenshots section below.
   (MCP → Express API → MongoDB).
 - Validation on `POST`/`PUT /api/notes` returns `400` with a JSON `{ error }` body when
   `title` or `content` is empty/whitespace-only.
+- Locally, MongoDB runs on a local instance to avoid a TLS/SSL handshake issue encountered
+  with Atlas on this specific network. In production (Railway), the app connects to
+  MongoDB Atlas successfully, since that issue was network-specific.
