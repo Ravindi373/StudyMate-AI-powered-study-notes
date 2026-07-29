@@ -1,4 +1,4 @@
-# 📚 StudyMate — Your AI-Powered Study Notes App
+# 📚 StudyMate - Your AI-Powered Study Notes App
 
 StudyMate is a full-stack study notes app: create a private account, capture notes by subject, get an AI generated 3-bullet summary + quiz question for any note, take an AI-generated multiple-choice quiz, and manage everything through a custom MCP server tested with MCP Inspector.
 
@@ -182,8 +182,8 @@ Screenshots of both tools succeeding are in the Screenshots section below.
 
 - ✅ Edit/update note end-to-end (`PUT /api/notes/:id`, edit button + form pre-fill in React)
 - ✅ Dark mode toggle on both the landing page and the React dashboard (persisted via `localStorage`)
-- ✅ AI Quiz Mode — generates 3 multiple-choice questions per note, with instant right/wrong feedback
-- ✅ Deployed live — frontend on Vercel, backend on Railway, database on MongoDB Atlas: https://study-mate-ai-powered-study-notes.vercel.app
+- ✅ AI Quiz Mode - generates 3 multiple-choice questions per note, with instant right/wrong feedback
+- ✅ Deployed live - frontend on Vercel, backend on Railway, database on MongoDB Atlas: https://study-mate-ai-powered-study-notes.vercel.app
 - ✅ User authentication (JWT + bcrypt) — went beyond the brief to fix a real privacy gap: notes are private per account, not shared globally
 
 ## Notes for the reviewer
