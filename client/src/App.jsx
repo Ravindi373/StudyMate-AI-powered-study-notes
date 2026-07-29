@@ -14,6 +14,7 @@ import {
 
 export default function App() {
   const [user, setUser] = useState(null);
+  const [theme, setTheme] = useState(() => localStorage.getItem('studymate_theme') || 'light');
   const [checkingAuth, setCheckingAuth] = useState(true);
 
   const [notes, setNotes] = useState([]);
@@ -32,6 +33,11 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('studymate_theme', theme);
+  }, [theme]);
+  
+  useEffect(() => {
     if (user) {
       loadNotes();
     }
@@ -48,6 +54,10 @@ export default function App() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
   const handleLogout = () => {
@@ -120,6 +130,9 @@ export default function App() {
           </div>
           <div className="user-bar">
             <span>Hi, {user.name}</span>
+            <button className="btn-theme-toggle" onClick={toggleTheme}>
+              {theme === 'light' ? '🌙' : '☀️'}
+            </button>
             <button className="btn-logout" onClick={handleLogout}>
               Log out
             </button>
