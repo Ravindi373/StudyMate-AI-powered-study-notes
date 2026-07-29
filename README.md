@@ -181,7 +181,7 @@ Screenshots of both tools succeeding are in the Screenshots section below.
 ## Bonus features implemented
 
 - ✅ Edit/update note end-to-end (`PUT /api/notes/:id`, edit button + form pre-fill in React)
-- ✅ Dark mode toggle on the landing page (persisted via `localStorage`)
+- ✅ Dark mode toggle on both the landing page and the React dashboard (persisted via `localStorage`)
 - ✅ AI Quiz Mode — generates 3 multiple-choice questions per note, with instant right/wrong feedback
 - ✅ Deployed live — frontend on Vercel, backend on Railway, database on MongoDB Atlas: https://study-mate-ai-powered-study-notes.vercel.app
 - ✅ User authentication (JWT + bcrypt) — went beyond the brief to fix a real privacy gap: notes are private per account, not shared globally
