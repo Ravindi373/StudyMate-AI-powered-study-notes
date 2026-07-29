@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
@@ -5,15 +6,44 @@ import {
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 
-// Point this at your running Express API (Part 3)
 const API_BASE = process.env.STUDYMATE_API_URL || 'http://localhost:5000/api';
+const EMAIL = process.env.STUDYMATE_EMAIL;
+const PASSWORD = process.env.STUDYMATE_PASSWORD;
+
+let cachedToken = null;
+
+async function login() {
+  if (cachedToken) return cachedToken;
+
+  const res = await fetch(`${API_BASE}/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: EMAIL, password: PASSWORD }),
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error || 'Failed to log in to StudyMate');
+  }
+
+  const data = await res.json();
+  cachedToken = data.token;
+  return cachedToken;
+}
+
+async function authHeaders() {
+  const token = await login();
+  return {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  };
+}
 
 const server = new Server(
   { name: 'studymate-mcp-server', version: '1.0.0' },
   { capabilities: { tools: {} } }
 );
 
-// ---- Tool definitions ----
 const tools = [
   {
     name: 'list_notes',
@@ -47,7 +77,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
   try {
     if (name === 'list_notes') {
-      const res = await fetch(`${API_BASE}/notes`);
+      const headers = await authHeaders();
+      const res = await fetch(`${API_BASE}/notes`, { headers });
       if (!res.ok) throw new Error(`API responded with ${res.status}`);
       const notes = await res.json();
 
@@ -72,10 +103,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     if (name === 'create_note') {
       const { title, subject, content } = args;
+      const headers = await authHeaders();
 
       const res = await fetch(`${API_BASE}/notes`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ title, subject, content }),
       });
 
